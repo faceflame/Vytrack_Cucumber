@@ -15,25 +15,26 @@ public class LoginWithParametersStepDefs {
     @When("user logs in {string} and {string}")
     public void user_logs_in_and(String username, String password) {
 
-        LoginPage loginPage= new LoginPage();
+        LoginPage loginPage = new LoginPage();
         loginPage.login(username, password);
 
     }
 
     @Then("the title should contain {string}")
-    public void the_title_should_contain(String ExpectedPageTitle) {
-        LoginPage loginPage= new LoginPage();
-        loginPage.waitUntilLoaderScreenDisappear();
-        String actualPageTitle=Driver.get().getTitle();
+    public void the_title_should_contain(String ExpectedPageTitle) throws InterruptedException {
+        LoginPage loginPage = new LoginPage();
+        loginPage.wait(3);
+        String actualPageTitle = Driver.get().getTitle();
 
 
         Assert.assertTrue(actualPageTitle.contains(ExpectedPageTitle));
     }
+
     @Given("a driver is logged in")
     public void a_driver_is_logged_in() {
         Driver.get().get(ConfigurationReader.get("url"));
-        String username= ConfigurationReader.get("driver_username");
-        String password= ConfigurationReader.get("driver_password");
+        String username = ConfigurationReader.get("driver_username");
+        String password = ConfigurationReader.get("driver_password");
         new LoginPage().login(username, password);
 
     }
@@ -42,20 +43,16 @@ public class LoginWithParametersStepDefs {
     public void the_user_goes_to(String tab, String module) {
         new DashboardPage().navigateToModule(tab, module);
 
-            }
+    }
 
     @Then("default page number should be {int}")
     public void default_page_number_should_be(Integer count) {
-        ContactsPage page= new ContactsPage();
+        ContactsPage page = new ContactsPage();
         page.waitUntilLoaderScreenDisappear();
-        Integer actualCount= Integer.parseInt(page.pageCount.getAttribute("value"));
+        Integer actualCount = Integer.parseInt(page.pageCount.getAttribute("value"));
 
         Assert.assertEquals(count, actualCount);
-
-
-
-    }
-
+}
 
 
 }

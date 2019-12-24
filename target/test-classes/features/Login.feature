@@ -1,5 +1,5 @@
 @login @smoke
-Feature: Users should be able to login
+Feature: Login
 
    @driver @VYT-123
   Scenario: Login as a driver

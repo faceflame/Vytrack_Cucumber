@@ -1,4 +1,3 @@
-
 Feature: Contacts page
 
   @contacts
@@ -12,4 +11,7 @@ Feature: Contacts page
   Scenario: Menu options
     Given a driver is logged in
     Then the user should see the following menu options
-    |Fleet|Customers|Activities|System|
+      | Fleet      |
+      | Customers  |
+      | Activities |
+      | System     |
